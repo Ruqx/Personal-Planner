@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes</title>
+    <link rel="stylesheet" href="../navbar/navbar.css" />
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+    <div id="my-navbar-container">
+        <div class="navbarContainer" id="navbar">
+            <div class="cut" id="cut"></div>
+            <div class="indicator" id="indicator"></div>
+            <div class="nav-item" data-icon="🏠" data-color="#FFD1DC" data-link="../index.html">🏠</div>
+            <div class="nav-item" data-icon="🔔" data-color="#C1F0F6" data-link="../goals/goals.html">🔔</div>
+            <div class="nav-item active" data-icon="💬" data-color="#FFF1B5" data-link="../notes/notes.html">💬</div>
+            <div class="nav-item" data-icon="👤" data-color="#D6C1FF" data-link="../mindmap/mindmap.html">👤</div>
+            <div class="nav-item" data-icon="📅" data-color="#A7F0BA" data-link="../calender/calender.html">📅</div>
+            <div class="nav-item" data-icon="📋" data-color="#F0C6A7" data-link="../kanban/kanban.html">📋</div>
+        </div>
+    </div>
+
+    <div class="settings-panel" id="settingsPanel">
+        <h3>Customize</h3>
+        <div class="setting-group">
+            <label for="bgColor">Page Background:</label>
+            <input type="color" id="bgColor" value="#fce4ec">
+        </div>
+        <div class="setting-group">
+            <label for="bannerColor">Banner Color:</label>
+            <input type="color" id="bannerColor" value="#F4A6B8">
+        </div>
+        <div class="setting-group">
+            <label for="bannerTextColor">Banner Text Color:</label>
+            <input type="color" id="bannerTextColor" value="#4B2E2E">
+        </div>
+        <div class="setting-group">
+            <label for="noteColor">Note Color:</label>
+            <input type="color" id="noteColor" value="#fff8e1">
+        </div>
+        <div class="setting-group">
+            <label for="fontFamily">Font:</label>
+            <select id="fontFamily">
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="'Georgia', serif">Georgia</option>
+                <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                <option value="'Verdana', sans-serif">Verdana</option>
+            </select>
+        </div>
+        <button id="resetSettings">Reset to Default</button>
+    </div>
+
+    <button id="toggleSettingsBtn">⚙️</button>
+
+    <div class="main-content">
+        <div class="banner-container">
+            <h1 id="banner-text" contenteditable="true">My Notes 📝</h1>
+        </div>
+        <div class="notes-container" id="notes-container"></div>
+    </div>
+    
+    <button class="add-note-btn" id="add-note-btn">
+        <span>+</span> Add Note
+    </button>
+    
+    <script src="notes.js"></script>
+    <script src="../navbar/navbar.js"></script>
+</body>
+</html>
