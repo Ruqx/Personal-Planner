@@ -1,0 +1,168 @@
+#mindmap-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fce4ec; /* Consistent pastel background */
+    overflow: hidden;
+}
+
+#mindmapCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#node-details {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Add this line */
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#node-details h3 {
+    margin: 0 0 5px;
+    color: #4B2E2E;
+}
+
+#node-details p {
+    margin: 0;
+    color: #F4A6B8;
+    font-style: italic;
+}
+
+#node-details a {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #F4A6B8;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    pointer-events: auto; /* Add this line */
+}
+
+/* SIDE PANEL */
+.side-panel {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;              /* fully hidden except the peeking button */
+  background-color: #8B5E3C; /* brown */
+  color: #fff;
+  padding: 70px 20px 20px 20px; /* room at top for button */
+  transition: left 0.36s cubic-bezier(.2,.9,.3,1);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.25);
+  z-index: 12; /* above canvas */
+}
+
+/* when open */
+.side-panel.open {
+  left: 0;
+}
+
+/* internal content */
+.side-panel h2 {
+  margin: 0 0 18px 0;
+  font-size: 20px;
+  text-align: center;
+  color: #fff5f0;
+}
+
+.side-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-panel ul li {
+  margin: 14px 0;
+  cursor: pointer;
+  transition: color 0.16s;
+  text-align: left;
+  padding-left: 8px;
+  color: #fff5f0;
+}
+.side-panel ul li:hover { color: #FFD1DC; }
+
+/* TOGGLE BUTTON - pinned to the panel's right edge, peeking out */
+.toggle-btn {
+  position: absolute;       /* positioned relative to .side-panel */
+  top: 16px;
+  right: -48px;             /* peeks outside the panel by 48px */
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: none;
+  background: #FFD1DC;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  padding: 0;
+}
+
+/* three bars (hamburger) */
+.bar {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  background: #4B2E2E; /* warm brown lines */
+  border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(.2,.9,.3,1), opacity 0.2s;
+  margin: 3px 0;
+}
+
+/* transform hamburger into X when panel open */
+.side-panel.open .bar1 {
+  transform: translateY(6px) rotate(45deg);
+}
+.side-panel.open .bar2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.side-panel.open .bar3 {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* small responsive tweak: reduce peek on very small screens */
+@media (max-width: 420px) {
+  .side-panel { width: 220px; left: -220px; }
+  .side-panel.open { left: 0; }
+  .toggle-btn { right: -44px; width: 40px; height: 40px; }
+}
+
+/* make sure canvas stays centered and not overlapped visually by the button (z-index handled) */
+/* Side Panel */
+.side-panel {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #8B5E3C; /* warm brown */
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  transition: left 0.3s ease;
+  padding: 60px 20px 20px; /* leave space for button */
+  color: #fff;
+}
+
+.side-panel.open {
+  left: 0;
+}
