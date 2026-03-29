@@ -1,0 +1,24 @@
+/* sidebar.css */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Hidden off-screen by default */
+  width: 300px;
+  height: 100%;
+  background-color: #f4f4f4;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.side-panel.open {
+  right: 0; /* Slides into view */
+}
+
+#toggleBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  /* Add your styling here */
+}
