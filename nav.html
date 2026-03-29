@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Navbar — Deep Dip + Icon in Circle</title>
+<style>
+  :root{
+    --page-bg: #0e5962;   /* page background */
+    --nav-color: #9e7b5e; /* navbar color */
+    --nav-w: 70px;        /* navbar width */
+    --ind-size: 52px;     /* circle size */
+    --cut-size: 110px;    /* bigger → deeper dip */
+    --gap-top: 28px;      /* top padding */
+  }
+
+  html,body{height:100%; margin:0;}
+  body{
+    background: var(--page-bg);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    display:flex;
+    align-items:flex-start;
+  }
+
+  .navbarContainer{
+  position: relative;
+  width: var(--nav-w);
+  height: 640px; /* fixed height shorter than full page */
+  margin: 20px;
+  background: var(--nav-color);
+  border-radius: 20px;
+  padding-top: var(--gap-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  overflow: visible;
+  transition: background-color .35s ease;
+}
+
+.cut {
+  position:absolute;
+  width: calc(var(--ind-size) + 20px); /* slightly bigger than circle */
+  height: calc(var(--ind-size) + 20px);
+  background: var(--page-bg);
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 0;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.indicator {
+  position:absolute;
+  width: var(--ind-size);
+  height: var(--ind-size);
+  background: var(--nav-color);
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 0;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  z-index: 3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  color:#fff;
+}
+
+
+  .nav-item {
+    width: 50px;
+    height: 50px;
+    margin: 18px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    z-index: 4;
+    position: relative;
+    user-select:none;
+    transition: color 0.3s;
+  }
+
+  .nav-item.active {
+    color: transparent; /* hide original when active (since it's inside circle) */
+  }
+
+  .content {
+    color: #fff;
+    padding: 36px;
+    flex:1;
+  }
+</style>
+</head>
+<body>
+  <div class="navbarContainer" id="navbar">
+    <div class="cut" id="cut"></div>
+    <div class="indicator" id="indicator">🏠</div>
+
+    <div class="nav-item active" data-icon="🏠" data-color="#FFD1DC">🏠</div>
+  <div class="nav-item" data-icon="🔔" data-color="#C1F0F6">🔔</div>
+  <div class="nav-item" data-icon="💬" data-color="#FFF1B5">💬</div>
+  <div class="nav-item" data-icon="👤" data-color="#D6C1FF">👤</div>
+  </div>
+
+  <div class="content">
+    <h1>Deep Dip + Icon Inside Circle</h1>
+    <p>Click icons — the navbar dips deeper, and the selected icon jumps into the circle.</p>
+  </div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const items = navbar.querySelectorAll('.nav-item');
+  const indicator = document.getElementById('indicator');
+  const cut = document.getElementById('cut');
+
+  function moveTo(el){
+  const navRect = navbar.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+
+  const indH = indicator.offsetHeight;
+  const cutH = cut.offsetHeight;
+
+  // center the circle exactly on the nav-item
+  const targetTop = (elRect.top - navRect.top) + (elRect.height / 2) - (indH / 2);
+
+  // center the cut around the circle
+  const cutOffset = (cutH - indH) / 2;
+
+  indicator.style.transform = `translate(-50%, ${targetTop}px)`;
+  cut.style.transform = `translate(-50%, ${targetTop - cutOffset}px)`;
+
+  // put icon into circle
+  const icon = el.getAttribute('data-icon');
+  indicator.textContent = icon;
+
+  // update navbar and circle color
+  const color = el.getAttribute('data-color');
+  navbar.style.backgroundColor = color;
+  indicator.style.backgroundColor = color;
+
+  // active state
+  items.forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+  moveTo(items[0]);
+
+  items.forEach(it => {
+    it.addEventListener('click', () => moveTo(it));
+  });
+
+  window.addEventListener('resize', () => {
+    const active = navbar.querySelector('.nav-item.active') || items[0];
+    moveTo(active);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Clock with Side Panel</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="components.css" />
+    <link rel="stylesheet" href="navbar/navbar.css">
+</head>
+<body>
+<div id="my-navbar-container">
+  <div class="navbarContainer" id="navbar">
+    <div class="cut" id="cut"></div>
+    <div class="indicator" id="indicator">🏠</div>
+
+    <div class="nav-item active" data-icon="🏠" data-color="#FFD1DC" data-link="index.html">🏠</div>
+    <div class="nav-item" data-icon="🔔" data-color="#C1F0F6" data-link="../goals/goals.html">🔔</div>
+    <div class="nav-item" data-icon="💬" data-color="#FFF1B5" data-link="../notes/notes.html">💬</div>
+    <div class="nav-item" data-icon="👤" data-color="#D6C1FF" data-link="../mindmap/mindmap.html">👤</div>
+    <div class="nav-item" data-icon="📅" data-color="#A7F0BA" data-link="../calender/calender.html">📅</div>
+    <div class="nav-item" data-icon="📋" data-color="#F0C6A7" data-link="../kanban/kanban.html">📋</div>
+  </div>
+</div>
+
+
+    <div id="todoNote" class="todo-note">
+        <div class="todo-header">
+            <span>📝 Todo</span>
+            <button id="closeTodo">×</button>
+        </div>
+        <ul id="todoList" contenteditable="false"></ul>
+        <input id="todoInput" type="text" placeholder="Type task and press Enter..." />
+        <div class="resizer"></div>
+    </div>
+
+    <button id="openTodo" class="open-todo-btn">📝 Todo</button>
+
+    <canvas id="clockCanvas"></canvas>
+
+    <script src="script.js"></script>
+    <script src="navbar/navbar.js"></script>
+</body>
+</html>
