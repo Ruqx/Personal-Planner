@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Goals</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="goals.css" />
+  <link rel="stylesheet" href="sidebar/sidebar.css" />
+  <link rel="stylesheet" href="../navbar/navbar.css" />
+</head>
+<body>
+  <div id="my-navbar-container">
+  <div class="navbarContainer" id="navbar">
+    <div class="cut" id="cut"></div>
+    <div class="indicator" id="indicator"></div>
+    <div class="nav-item active" data-icon="🏠" data-color="#FFD1DC" data-link="../index.html">🏠</div>
+    <div class="nav-item" data-icon="🔔" data-color="#C1F0F6" data-link="/goals/goals.html">🔔</div>
+    <div class="nav-item" data-icon="💬" data-color="#FFF1B5" data-link="../notes/notes.html">💬</div>
+    <div class="nav-item" data-icon="👤" data-color="#D6C1FF" data-link="../mindmap/mindmap.html">👤</div>
+    <div class="nav-item" data-icon="📅" data-color="#A7F0BA" data-link="../calender/calender.html">📅</div>
+    <div class="nav-item" data-icon="📋" data-color="#F0C6A7" data-link="../kanban/kanban.html">📋</div>
+  </div>
+</div>
+  <!-- Top banner -->
+  <header class="goals-banner">
+    <div class="banner-options">
+      <label>
+        <input type="radio" name="bannerType" value="color" checked> Color
+      </label>
+      <label>
+        <input type="radio" name="bannerType" value="image"> Image
+      </label>
+      <input type="color" id="bannerColor" value="#d68a8a">
+      <input type="file" id="bannerImage" accept="image/*" style="display:none;">
+    </div>
+    <h1>🎯 My Goals</h1>
+  </header>
 
+  <!-- Workspace -->
+  <main id="goalBoard" class="goal-board">
+    <!-- Goal notes will be added here dynamically -->
+  </main>
+
+  <!-- Add Goal Button -->
+  <button id="addGoalBtn" class="add-goal-btn">＋</button>
+
+  <script src="goals.js"></script>
+  <script src="../navbar/navbar.js"></script>
+</body>
+</html>
