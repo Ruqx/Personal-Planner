@@ -1,0 +1,103 @@
+:root{
+  --nav-w: 70px;        /* navbar width */
+  --ind-size: 52px;     /* circle size */
+  --cut-size: 110px;    /* bigger → deeper dip */
+  --gap-top: 28px;      /* top padding */
+}
+
+/* body adjustments handled in main CSS */
+/* navbar container */
+.navbarContainer {
+  position: fixed;        /* stays in place while scrolling */
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  width: var(--nav-w);
+  height: 400px;          /* adjust as needed */
+  background: #9e7b5e;    /* default color */
+  border-radius: 20px;
+  padding-top: var(--gap-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  overflow: visible;
+  transition: background-color .35s ease;
+  z-index: 10;
+}
+
+/* the cut behind the indicator (deep dip) */
+.cut {
+  position: absolute;
+  width: calc(var(--ind-size) + 20px);
+  height: calc(var(--ind-size) + 20px);
+  background: #0e5962; /* match your page background */
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 0;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* the circular indicator */
+.indicator {
+  position: absolute;
+  width: var(--ind-size);
+  height: var(--ind-size);
+  background: #9e7b5e; /* default */
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 0;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1), background-color .35s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+}
+
+/* individual nav items */
+.nav-item {
+  width: 50px;
+  height: 50px;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  z-index: 4;
+  position: relative;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+/* hide icon inside navbar when active because indicator shows it */
+.nav-item.active {
+  color: transparent;
+}
+
+/* hover effect for better UX */
+.nav-item:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+/* optional: small shadow under indicator icon */
+.indicator::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 10%;
+  bottom: 4px;
+  left: 10%;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  filter: blur(2px);
+}
