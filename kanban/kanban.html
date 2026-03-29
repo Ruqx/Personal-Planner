@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="kanban.css" />
+</head>
+<body>
+    <button id="settings-toggle-btn" class="settings-toggle-btn" title="Customize Page">⚙️</button>
+
+    <div id="settings-panel" class="settings-panel">
+        <h3>Customize Page</h3>
+        
+        <label for="banner-image-input">Banner Image</label>
+        <input type="file" id="banner-image-input" accept="image/*">
+
+        <label for="banner-font-select">Banner Font</label>
+        <select id="banner-font-select">
+            <option value="'Poppins', sans-serif">Poppins</option>
+            <option value="'Merriweather', serif">Merriweather (Serif)</option>
+            <option value="'Inconsolata', monospace">Inconsolata (Mono)</option>
+            <option value="'Playfair Display', serif">Playfair Display</option>
+            <option value="'Oswald', sans-serif">Oswald</option>
+        </select>
+
+        <label for="bg-color-input">Page Background Color</label>
+        <input type="color" id="bg-color-input" value="#f7f9fc">
+        
+        <button id="reset-settings-btn">Reset to Defaults</button>
+    </div>
+
+
+    <header id="main-banner" class="main-banner">
+        <h1 id="banner-text" contenteditable="true">My Dashboard</h1>
+    </header>
+ 
+<button id="toggleBtn" class="toggle-btn">
+    <span class="bar bar1"></span>
+    <span class="bar bar2"></span>
+    <span class="bar bar3"></span>
+</button>
+
+<div id="sidePanel" class="side-panel">
+    <h2>Menu</h2>
+    <ul>
+            <li><a href="../index.html">Home (Clock)</a></li>
+            <li><a href="../goals/goals.html">Goals</a></li>
+            <li><a href="../notes/notes.html">Notes</a></li>
+            <li><a href="../mindmap/mindmap.html">Mind Map</a></li>
+            <li><a href="../calender/calender.html">Calender</a></li>
+        </ul>
+    </div>
+
+<main id="dashboard-canvas"></main>
+
+    <main id="dashboard-canvas"></main>
+    
+    <div class="fab-container" id="fabContainer">
+        <div class="fab-options">
+            <button class="fab-option" data-type="todo">📝 To-Do List</button>
+            <button class="fab-option" data-type="note">📄 Note</button>
+            <button class="fab-option" data-type="image">🖼️ Image</button>
+        </div>
+        <button class="fab-main" id="fabMainBtn">+</button>
+    </div>
+    
+    <input type="file" id="imageUploader" accept="image/*" style="display: none;">
+
+    <script src="kanban.js"></script>
+</body>
+</html>
+
