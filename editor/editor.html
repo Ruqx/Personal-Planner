@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notebook</title>
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="editor.css"> </head>
+<body>
 
+    <div id="sidePanel" class="side-panel">
+        <button id="toggleBtn" class="toggle-btn">
+            ☰
+        </button>
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">Home (Clock)</a></li>
+            <li>About</li>
+            <li>Settings</li>
+            <li><a href="./goals/goals.html">Goals</a></li>
+            <li><a href="editor.html">Notebook</a></li>
+        </ul>
+    </div>
+
+    <main class="editor-page-container">
+        <div class="editor-menu">
+            <button onclick="editor.chain().focus().toggleHeading({ level: 1 }).run()">H1</button>
+            <button onclick="editor.chain().focus().toggleHeading({ level: 2 }).run()">H2</button>
+            <button onclick="editor.chain().focus().toggleBulletList().run()">List</button>
+            <button onclick="editor.chain().focus().toggleCodeBlock().run()">Code</button>
+            <button onclick="editor.chain().focus().toggleBold().run()">B</button>
+            <button onclick="editor.chain().focus().toggleItalic().run()">I</button>
+        </div>
+        <div id="editor"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tiptap/pm@latest/dist/tiptap-pm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tiptap/core@latest/dist/tiptap-core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tiptap/starter-kit@latest/dist/tiptap-starter-kit.js"></script>
+    <script src="editor.js"></script>
+    <script src="script.js"></script> </body>
+</html>

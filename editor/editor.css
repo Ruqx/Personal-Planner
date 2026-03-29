@@ -1,0 +1,74 @@
+/* Basic container to center the editor on its page */
+.editor-page-container {
+    padding-top: 50px; /* Adjust based on your side panel's layout */
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 80vh;
+}
+
+/* Basic Tiptap Editor and Menu Styles */
+.editor-menu {
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.editor-menu button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.editor-menu button:hover {
+    background-color: #e0e0e0;
+}
+
+#editor {
+    padding: 1rem;
+    min-height: 400px;
+}
+
+/* Basic styling for Tiptap elements */
+.ProseMirror {
+    outline: none;
+    line-height: 1.6;
+}
+
+.ProseMirror p {
+    margin: 0 0 1rem 0;
+}
+
+.ProseMirror h1, .ProseMirror h2 {
+    margin: 2rem 0 1rem 0;
+}
+
+.ProseMirror h1 {
+    font-size: 2em;
+}
+
+.ProseMirror h2 {
+    font-size: 1.5em;
+}
+
+.ProseMirror ul, .ProseMirror ol {
+    margin-left: 2rem;
+}
+
+.ProseMirror pre {
+    background: #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
