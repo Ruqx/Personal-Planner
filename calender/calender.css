@@ -1,0 +1,211 @@
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #8a7967;
+            --secondary-color: #bcaaa4;
+            --background-color: #f4f2f0;
+            --card-bg-color: #ffffff;
+            --text-color: #333333;
+            --subtle-text-color: #666666;
+            --border-color: #dddddd;
+            --font-family: 'Quicksand', sans-serif;
+        }
+        body[data-theme="forest"] {
+            --primary-color: #4a7c59;
+            --secondary-color: #a3b899;
+            --background-color: #f0f5f0;
+            --card-bg-color: #ffffff;
+            --text-color: #2c3e50;
+        }
+        body[data-theme="ocean"] {
+            --primary-color: #0077b6;
+            --secondary-color: #90e0ef;
+            --background-color: #e0f7fa;
+            --card-bg-color: #ffffff;
+            --text-color: #03045e;
+        }
+        body[data-theme="dusk"] {
+            --primary-color: #d98e73;
+            --secondary-color: #f1bfae;
+            --background-color: #2c3e50;
+            --card-bg-color: #34495e;
+            --text-color: #ecf0f1;
+            --subtle-text-color: #bdc3c7;
+            --border-color: #4a627a;
+        }
+        body[data-font="roboto-slab"] { --font-family: 'Roboto Slab', serif; }
+        body[data-font="lora"] { --font-family: 'Lora', serif; }
+        body[data-font="montserrat"] { --font-family: 'Montserrat', sans-serif; }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Roboto+Slab:wght@400;700&family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .top-panel {
+            width: 100%; height: 250px; background-image: url('https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?q=85'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); position: relative;
+        }
+        .top-panel-content { text-align: center; }
+        .top-panel h1 { font-size: 3rem; margin: 0; }
+        .top-panel p { font-size: 1.2rem; margin-top: 10px; }
+        .calendar-container { padding: 20px; max-width: 1200px; margin: auto; }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; }
+        #monthYear { font-size: 2rem; font-weight: 700; flex-grow: 1; text-align: center; }
+        .nav-btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s; white-space: nowrap; }
+        .nav-btn:hover { background-color: var(--secondary-color); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; align-items: start; }
+        .day-header { font-weight: 700; text-align: center; padding-bottom: 10px; color: var(--primary-color); }
+        .day-card { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; min-height: 100px; display: flex; flex-direction: column; transition: box-shadow 0.3s, background-color 0.3s, border-color 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; }
+        .day-card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .day-card.other-month { background-color: transparent; opacity: 0.6; border: 1px solid transparent; user-select: none; }
+        
+        /* Container for date number and color button */
+        .date-header { display: flex; justify-content: space-between; align-items: center; }
+        .date-number { font-weight: 500; font-size: 1.1rem; }
+        .color-picker-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 0; opacity: 0; transition: opacity 0.2s; }
+        .day-card:hover .color-picker-btn { opacity: 0.7; }
+        .color-picker-btn:hover { opacity: 1; }
+        
+        /* Color Palette Pop-up */
+        .color-palette-popup {
+            position: absolute; background-color: var(--card-bg-color); border: 1px solid var(--border-color);
+            border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; padding: 5px; gap: 5px; z-index: 1010;
+        }
+        .color-swatch {
+            width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+            border: 2px solid #fff; box-shadow: 0 0 0 1px var(--border-color); transition: transform 0.2s;
+        }
+        .color-swatch:hover { transform: scale(1.1); }
+        .color-swatch[data-color="default"] { background-image: linear-gradient(135deg, #ccc 45%, transparent 45%, transparent 55%, #ccc 55%, #ccc 100%), linear-gradient(45deg, #ccc 45%, #fff 45%, #fff 55%, #ccc 55%); }
+
+        .card-content { flex-grow: 1; margin-top: 10px; }
+        .add-detail-btn { background-color: transparent; color: #aaa; border: 1px dashed #ccc; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 1.5rem; line-height: 28px; margin: 10px auto; display: block; transition: all 0.3s; }
+        .add-detail-btn:hover { background-color: var(--primary-color); color: white; border-style: solid; }
+        .detail-item { margin-bottom: 15px; border-left: 3px solid var(--secondary-color); padding-left: 10px; position: relative; }
+        .detail-item > h4 { margin: 0 0 5px 0; font-size: 1rem; word-wrap: break-word; cursor: pointer; transition: color 0.2s; }
+        .detail-item > h4:hover { color: var(--primary-color); }
+        .detail-item > p { margin: 0; font-size: 0.9rem; color: var(--subtle-text-color); word-wrap: break-word; }
+        .detail-item > img { width: 100%; border-radius: 5px; margin-top: 10px; }
+        .detail-actions { position: absolute; top: 0; right: 0; display: flex; gap: 5px; opacity: 0; transition: opacity 0.3s; }
+        .detail-item:hover .detail-actions { opacity: 1; }
+        .action-btn { background: none; border: none; cursor: pointer; font-size: 1rem; padding: 2px; }
+        .edit-btn { color: var(--primary-color); }
+        .delete-btn { color: #c88476; }
+        .detail-item > p, .detail-item > img { display: none; }
+        .detail-item.is-expanded > p, .detail-item.is-expanded > img { display: block; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.5); }
+        .modal-content { background-color: var(--card-bg-color); margin: 10% auto; padding: 20px; border: 1px solid var(--border-color); width: 80%; max-width: 500px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .modal-content h2 { margin-top: 0; }
+        .modal-content label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: 500; }
+        .modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--background-color); color: var(--text-color); box-sizing: border-box; }
+        .modal-content button { margin-top: 20px; background-color: var(--primary-color); color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+        #removePanelImageBtn { background-color: #777; font-size: 0.8rem; padding: 8px 12px; margin-top: 10px; }
+        #settingsForm fieldset { border: 1px solid var(--border-color); border-radius: 5px; margin-bottom: 20px; }
+        #settingsForm legend { font-weight: 700; color: var(--primary-color); padding: 0 5px; }
+        .theme-options { display: flex; justify-content: space-around; padding: 10px 0; }
+
+/* ==========================================================================
+   Left Side Panel & Toggle Button Styles
+   ========================================================================== */
+
+/* This rule pushes the main content wrapper when the panel is open.
+   It should be in your main CSS file if .main-content is defined there. */
+body.side-panel-open .main-content {
+  margin-left: 250px;
+}
+
+.side-panel {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Make sure these variables are defined in your main CSS file or a global file */
+  background-color: var(--color-side-panel);
+  color: var(--color-text-light);
+  padding: 70px 20px 20px 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 1100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.side-panel.open {
+  transform: translateX(0);
+}
+
+.side-panel h2 {
+  margin: 0 0 18px 0;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.side-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-panel ul li {
+  margin: 14px 0;
+  padding-left: 8px;
+  cursor: pointer;
+  transition: color 0.16s;
+}
+
+.side-panel ul li:hover {
+  color: #FFD1DC;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 290px; 
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: none;
+  background: #FFD1DC;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1101;
+  padding: 0;
+  gap: 5px;
+}
+
+.bar {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  /* Make sure this variable is defined */
+  background: var(--color-text-dark);
+  border-radius: 2px;
+  transition: transform 0.28s ease-in-out, opacity 0.2s;
+}
+
+.side-panel.open .toggle-btn .bar1 { transform: translateY(5.5px) rotate(45deg); }
+.side-panel.open .toggle-btn .bar2 { opacity: 0; }
+.side-panel.open .toggle-btn .bar3 { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Responsive styles for the side panel */
+@media (max-width: 420px) {
+  .side-panel {
+    width: 220px;
+  }
+
+  .toggle-btn {
+    left: 220px; /* Match panel width */
+  }
+  
+  body.side-panel-open .main-content {
+    margin-left: 220px; /* Match responsive panel width */
+  }
+}
